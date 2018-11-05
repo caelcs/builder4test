@@ -1,2 +1,2 @@
-# build4test
-Library to build your pojo entities in a very easy and intuitive way
+# builder4test
+Library to build your POJO entities in a very easy and builder intuitive way.

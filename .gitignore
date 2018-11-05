@@ -1,0 +1,12 @@
+.idea/
+*.iml
+*.iws
+*.ipr
+build/
+.gradle
+target/
+classes
+out
+
+# Mac
+.DS_Store
