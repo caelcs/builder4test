@@ -1,6 +1,6 @@
 package uk.co.caeldev.builder4test.impl;
 
-class Pojo {
+public class Pojo {
     String name;
     String value;
 

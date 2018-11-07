@@ -9,7 +9,7 @@ public class Builder {
         return new Builder();
     }
 
-    public EntityBuilder entity(Creator creator) {
+    public <K> EntityBuilder<K> entity(Creator<K> creator) {
         return EntityBuilder.entityBuilder(creator);
     }
 }

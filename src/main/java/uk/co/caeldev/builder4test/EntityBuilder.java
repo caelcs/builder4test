@@ -1,8 +1,6 @@
 package uk.co.caeldev.builder4test;
 
-import java.util.function.Supplier;
-
-public class EntityBuilder<K> {
+class EntityBuilder<K> {
 
     private final FieldLookup fieldLookup;
     private final Creator<K> creator;
@@ -12,16 +10,16 @@ public class EntityBuilder<K> {
         this.fieldLookup = new FieldLookup();
     }
 
-    static <T> EntityBuilder entityBuilder(Creator<T> Creator) {
+    static <T> EntityBuilder<T> entityBuilder(Creator<T> Creator) {
         return new EntityBuilder<>(Creator);
     }
 
-    public EntityBuilder with(Supplier<Value> value) {
-        fieldLookup.add(value.get());
+    <V> EntityBuilder<K> with(String fieldName, V value) {
+        fieldLookup.add(new Value<>(fieldName, value));
         return this;
     }
 
-    public K get() {
+    K get() {
         creator.initializeLookup(fieldLookup);
         return creator.create();
     }
