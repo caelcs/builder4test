@@ -1,12 +1,12 @@
 # Builder4test
 Library to build your POJO entities in a very easy and builder intuitive way.
 
-##Motivation
+## Motivation
 Most of the time when I am writting my tests I have the need to write clean and readable tests. One way that I found is by having Test Builder but normally it takes time and are difficult to mantain in time. So after looking around I came up with this library to help you to create your pojo in a different and easy way.
 
-##How to use it
+## How to use it
 the library provides a nice DSL to create your Builders. you only need two steps to have your builder.
-###Step 1: 
+### Step 1: 
 Write your creator class, this class will be use by the Builder class to create the instance and inject the field values that you want to populate in your pojo.
 
 ```java
@@ -20,7 +20,7 @@ public class PojoCreator extends Creator<Pojo> {
 
 }
 ```
-###Step 2:
+### Step 2:
 Build your instance by using the following line:
 
 ```java
