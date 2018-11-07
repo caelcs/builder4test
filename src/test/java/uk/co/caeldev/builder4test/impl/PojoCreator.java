@@ -1,14 +1,14 @@
 package uk.co.caeldev.builder4test.impl;
 
 import uk.co.caeldev.builder4test.Creator;
-import uk.co.caeldev.builder4test.FieldLookup;
+import uk.co.caeldev.builder4test.Lookup;
 
 public class PojoCreator extends Creator<Pojo> {
 
     @Override
-    public Pojo builder(FieldLookup fieldLookup) {
-        return new Pojo(fieldLookup.lookup("name", "defaultName"),
-                    fieldLookup.lookup("value", "defaultValue"));
+    public Pojo builder(Lookup lookup) {
+        return new Pojo(lookup.get("name", "defaultName"),
+                    lookup.get("value", "defaultValue"));
     }
 
 }

@@ -2,16 +2,16 @@ package uk.co.caeldev.builder4test;
 
 public abstract class Creator<T> {
 
-    protected FieldLookup fieldLookup;
+    protected Lookup lookup;
 
-    public abstract T builder(FieldLookup fieldLookup);
+    public abstract T builder(Lookup lookup);
 
-    public void initializeLookup(FieldLookup fieldLookup) {
-        this.fieldLookup = fieldLookup;
+    public void initializeLookup(Lookup lookup) {
+        this.lookup = lookup;
     }
 
     public T create() {
-        return builder(fieldLookup);
+        return builder(lookup);
     }
 
 }

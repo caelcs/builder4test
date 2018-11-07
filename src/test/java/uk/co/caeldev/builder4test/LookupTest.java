@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class FieldLookupTest {
+class LookupTest {
 
-    private FieldLookup fieldLookup;
+    private Lookup lookup;
 
     @BeforeEach
     public void createLookup() {
-        fieldLookup = new FieldLookup();
+        lookup = new Lookup();
     }
 
     @Test
     public void fieldsShouldNotBeNull() {
-        assertThat(fieldLookup.fields).isNotNull();
+        assertThat(lookup.fields).isNotNull();
     }
 
     @Test
@@ -25,10 +25,10 @@ class FieldLookupTest {
         Value<String> value = new Value<>("name", "default");
 
         //When
-        fieldLookup.add(value);
+        lookup.add(value);
 
         //Then
-        assertThat(fieldLookup.fields)
+        assertThat(lookup.fields)
                 .containsKey("name")
                 .containsValue(value);
     }
@@ -39,10 +39,10 @@ class FieldLookupTest {
         Value<String> value = new Value<>("name", "default");
 
         //And
-        fieldLookup.add(value);
+        lookup.add(value);
 
         //When
-        String lookup = fieldLookup.lookup("name", "test");
+        String lookup = this.lookup.get("name", "test");
 
         //Then
         assertThat(lookup)
@@ -55,10 +55,10 @@ class FieldLookupTest {
         Value<String> value = new Value<>("name", null);
 
         //And
-        fieldLookup.add(value);
+        lookup.add(value);
 
         //When
-        String lookup = fieldLookup.lookup("name", "test");
+        String lookup = this.lookup.get("name", "test");
 
         //Then
         assertThat(lookup).isEqualTo("test");
@@ -70,10 +70,10 @@ class FieldLookupTest {
         Value<String> value = new Value<>("name", "default");
 
         //And
-        fieldLookup.add(value);
+        lookup.add(value);
 
         //When
-        String lookup = fieldLookup.lookup("file", "test");
+        String lookup = this.lookup.get("file", "test");
 
         //Then
         assertThat(lookup).isEqualTo("test");

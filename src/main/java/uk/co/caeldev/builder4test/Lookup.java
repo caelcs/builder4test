@@ -6,11 +6,11 @@ import java.util.Optional;
 
 import static java.util.Objects.isNull;
 
-public class FieldLookup {
+public class Lookup {
 
     Map<String, Value> fields;
 
-    FieldLookup() {
+    Lookup() {
         this.fields = new HashMap<>();
     }
 
@@ -18,7 +18,7 @@ public class FieldLookup {
         fields.put(field.fieldId, field);
     }
 
-    public <K> K lookup(String fieldName, K defaultValue) {
+    public <K> K get(String fieldName, K defaultValue) {
         Optional<Value> optionalValue = Optional.ofNullable(fields.get(fieldName));
 
         if (!optionalValue.isPresent()) {
