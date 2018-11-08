@@ -21,6 +21,6 @@ class EntityBuilder<K> {
 
     K get() {
         creator.initializeLookup(lookup);
-        return creator.create();
+        return creator.build();
     }
 }
