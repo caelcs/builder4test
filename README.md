@@ -35,5 +35,3 @@ you can override the default value by using the method with:
 ```java
 Pojo instance = Builder.build().entity(new PojoCreator()).with("name", "test1").get();
 ```
-
-:)
