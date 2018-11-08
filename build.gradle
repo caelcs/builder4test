@@ -3,7 +3,7 @@ plugins {
     id 'signing'
     id 'maven'
     id 'jacoco'
-    id 'pl.allegro.tech.build.axion-release' version '1.9.3'
+    id 'pl.allegro.tech.build.axion-release' version '1.8.1'
 }
 
 group 'uk.co.caeldev'
@@ -112,9 +112,9 @@ uploadArchives {
                 url "https://github.com/caelwinner/spring-security-mongo"
 
                 scm {
-                    url "git@github.com:caelwinner/builder4test.git"
-                    connection "git@github.com:caelwinner/builder4test.git"
-                    developerConnection "git@github.com:caelwinner/builder4test.git"
+                    url "https://github.com/caelwinner/builder4test.git"
+                    connection "https://github.com/caelwinner/builder4test.git"
+                    developerConnection "https://github.com/caelwinner/builder4test.git"
                 }
 
                 licenses {
