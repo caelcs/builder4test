@@ -2,11 +2,11 @@ package uk.co.caeldev.builder4test;
 
 public abstract class Creator<T> {
 
-    Lookup lookup;
+    protected Lookup lookup;
 
     public abstract T build();
 
-    void initializeLookup(Lookup lookup) {
+    protected void initializeLookup(Lookup lookup) {
         this.lookup = lookup;
     }
 

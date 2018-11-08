@@ -8,7 +8,7 @@ import static java.util.Objects.isNull;
 
 public class Lookup {
 
-    Map<String, Value> fields;
+    private Map<String, Value> fields;
 
     Lookup() {
         this.fields = new HashMap<>();
