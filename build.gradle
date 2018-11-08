@@ -72,7 +72,20 @@ jacocoTestReport {
         xml.enabled true
         csv.enabled false
         html.enabled false
-        html.destination file("${buildDir}/jacoco")
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+    }
+    
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
     }
 }
 
