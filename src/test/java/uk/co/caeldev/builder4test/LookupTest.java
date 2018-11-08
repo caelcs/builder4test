@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.catchThrowable;
 
 class LookupTest {
 
@@ -18,7 +17,7 @@ class LookupTest {
 
     @Test
     public void fieldsShouldNotBeNull() {
-        assertThat(lookup.fields).isNotNull();
+        assertThat(lookup.getFields()).isNotNull();
     }
 
     @Test
@@ -30,7 +29,7 @@ class LookupTest {
         lookup.add(value);
 
         //Then
-        assertThat(lookup.fields)
+        assertThat(lookup.getFields())
                 .containsKey("name")
                 .containsValue(value);
     }

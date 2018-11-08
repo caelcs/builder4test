@@ -21,15 +21,27 @@ public class Lookup {
     public <K> K get(String fieldName, K defaultValue) {
         Optional<Value> optionalValue = Optional.ofNullable(fields.get(fieldName));
 
+        if (isNull(defaultValue)) {
+            throw  new IllegalArgumentException("Default value cannot be null");
+        }
+
         if (!optionalValue.isPresent()) {
             return defaultValue;
         }
 
-        if (optionalValue.get().getValue().getClass() != defaultValue.getClass()) {
+        if (isNull(optionalValue.get().getValue())) {
+            return defaultValue;
+        }
+
+        if (!defaultValue.getClass().equals(optionalValue.get().getValue().getClass())) {
             throw new IllegalArgumentException(String.format("value type is %s and default value type %s does not match",
                     optionalValue.get().getValue().getClass(), defaultValue.getClass()));
         }
 
         return isNull(optionalValue.get().getValue())? defaultValue : (K)optionalValue.get().getValue();
+    }
+
+    Map<String, Value> getFields() {
+        return fields;
     }
 }

@@ -2,7 +2,7 @@ package uk.co.caeldev.builder4test;
 
 public abstract class Creator<T> {
 
-    protected Lookup lookup;
+    Lookup lookup;
 
     public abstract T build();
 
@@ -13,5 +13,4 @@ public abstract class Creator<T> {
     public <K> K lookup(String fieldName, K defaultValue) {
         return lookup.get(fieldName, defaultValue);
     }
-
 }
