@@ -1,10 +1,12 @@
 plugins {
     id 'java'
-    id 'application'
+    id 'signing'
+    id 'maven'
+    id 'jacoco'
     id 'pl.allegro.tech.build.axion-release' version '1.9.3'
 }
 
-group 'uk.co.caeldev.api'
+group 'uk.co.caeldev'
 project.version = scmVersion.version
 
 sourceCompatibility = 1.8
@@ -22,4 +24,102 @@ dependencies {
     testImplementation "org.assertj:assertj-core:3.10.0"
     testImplementation "uk.org.fyodor:fyodor-core:1.0.0"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+}
+
+scmVersion {
+    tag {
+        prefix = 'RELEASE'
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+jar {
+    archivesBaseName = rootProject.name
+    group = group
+    version = version
+    manifest {
+        attributes 'Implementation-Title': 'builder4test',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Built-Gradle': gradle.gradleVersion
+    }
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
+    required = { gradle.taskGraph.hasTask("uploadArchives") && !version.endsWith("SNAPSHOT") }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+        html.destination file("${buildDir}/jacoco")
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: "${System.env.ossrhUsername}", password: "${System.env.ossrhPassword}")
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: "${System.env.ossrhUsername}", password: "${System.env.ossrhPassword}")
+            }
+
+            //repository(url: "/Users/me/.m2/repository")
+
+            pom.project {
+
+                name 'builder4test'
+                packaging "jar"
+
+                description "Library to build your own test builders in a easy way"
+                url "https://github.com/caelwinner/spring-security-mongo"
+
+                scm {
+                    url "git@github.com:caelwinner/builder4test.git"
+                    connection "git@github.com:caelwinner/builder4test.git"
+                    developerConnection "git@github.com:caelwinner/builder4test.git"
+                }
+
+                licenses {
+                    license {
+                        name "MIT"
+                        url "http://opensource.org/licenses/MIT"
+                        distribution "repo"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id "caelwinner"
+                        name "Adolfo Custidiano"
+                        email "adolfoecs@gmail.com"
+                    }
+                }
+            }
+        }
+    }
 }
