@@ -1,4 +1,7 @@
 # Builder4test
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/780ca838fb914d078d6cefe0e3583d22)](https://app.codacy.com/app/adolfoecs/builder4test?utm_source=github.com&utm_medium=referral&utm_content=caelwinner/builder4test&utm_campaign=Badge_Grade_Settings)
+
 Library to build your POJO entities in a very easy and builder intuitive way.
 
 [![Build Status](https://travis-ci.org/caelwinner/builder4test.svg?branch=master)](https://travis-ci.org/caelwinner/builder4test)
