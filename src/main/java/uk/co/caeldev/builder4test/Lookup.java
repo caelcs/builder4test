@@ -25,6 +25,11 @@ public class Lookup {
             return defaultValue;
         }
 
+        if (optionalValue.get().getValue().getClass() != defaultValue.getClass()) {
+            throw new IllegalArgumentException(String.format("value type is %s and default value type %s does not match",
+                    optionalValue.get().getValue().getClass(), defaultValue.getClass()));
+        }
+
         return isNull(optionalValue.get().getValue())? defaultValue : (K)optionalValue.get().getValue();
     }
 }

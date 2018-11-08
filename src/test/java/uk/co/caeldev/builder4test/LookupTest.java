@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.catchThrowable;
 
 class LookupTest {
 
@@ -77,6 +79,18 @@ class LookupTest {
 
         //Then
         assertThat(lookup).isEqualTo("test");
+    }
+
+    @Test
+    public void shouldThrowException() {
+        //Given
+        Value<String> value = new Value<>("name", "default");
+
+        //And
+        lookup.add(value);
+
+        //Then
+        assertThatIllegalArgumentException().isThrownBy(() -> lookup.get("name", 2.0d));
     }
 
 }

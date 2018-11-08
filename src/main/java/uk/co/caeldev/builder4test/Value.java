@@ -10,10 +10,6 @@ class Value<T> {
         this.value = value;
     }
 
-    String getFieldId() {
-        return fieldId;
-    }
-
     T getValue() {
         return value;
     }
