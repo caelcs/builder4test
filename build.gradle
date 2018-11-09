@@ -109,7 +109,7 @@ uploadArchives {
                 packaging "jar"
 
                 description "Library to build your own test builders in a easy way"
-                url "https://github.com/caelwinner/spring-security-mongo"
+                url "https://github.com/caelwinner/builder4test"
 
                 scm {
                     url "https://github.com/caelwinner/builder4test.git"
