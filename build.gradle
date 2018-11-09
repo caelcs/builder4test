@@ -3,7 +3,7 @@ plugins {
     id 'signing'
     id 'maven'
     id 'jacoco'
-    id 'pl.allegro.tech.build.axion-release' version '1.8.1'
+    id 'pl.allegro.tech.build.axion-release' version '1.9.2'
 }
 
 group 'uk.co.caeldev'
