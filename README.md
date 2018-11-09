@@ -1,7 +1,7 @@
 # Builder4test
 [![Build Status](https://travis-ci.org/caelwinner/builder4test.svg?branch=master)](https://travis-ci.org/caelwinner/builder4test)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/97f9a4cec6274108af592a20ae31f82b)](https://www.codacy.com/app/adolfoecs/builder4test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=caelwinner/builder4test&amp;utm_campaign=Badge_Grade)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builders4test/badge.png?style=flat)](http://search.maven.org/#search|ga|1|g%3A%22uk.co.caeldev%22%20AND%20a%3A%22builders4test%22)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test/badge.png?style=flat)](http://search.maven.org/#search|ga|1|g%3A%22uk.co.caeldev%22%20AND%20a%3A%22builder4test%22)
 
 Library to build your POJO entities in a very easy and builder intuitive way.
 
@@ -10,6 +10,8 @@ Most of the time when I am writting my tests I have the need to write clean and 
 
 ## How to use it
 the library provides a nice DSL to create your Builders. you only need two steps to have your builder.
+Just by adding as a dependency you will be able to get your builder in short time.
+
 ### Step 1: 
 Write your creator class, this class will be use by the Builder class to create the instance and inject the field values that you want to populate in your pojo.
 
