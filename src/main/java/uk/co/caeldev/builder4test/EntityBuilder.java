@@ -1,6 +1,6 @@
 package uk.co.caeldev.builder4test;
 
-class EntityBuilder<K> {
+public class EntityBuilder<K> {
 
     private final Lookup lookup;
     private final Creator<K> creator;
@@ -14,12 +14,12 @@ class EntityBuilder<K> {
         return new EntityBuilder<>(Creator);
     }
 
-    <V> EntityBuilder<K> with(String fieldName, V value) {
+    public <V> EntityBuilder<K> with(String fieldName, V value) {
         lookup.add(new Value<>(fieldName, value));
         return this;
     }
 
-    K get() {
+    public K get() {
         creator.initializeLookup(lookup);
         return creator.build();
     }
