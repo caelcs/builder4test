@@ -92,4 +92,18 @@ class LookupTest {
         assertThatIllegalArgumentException().isThrownBy(() -> lookup.get("name", 2.0d));
     }
 
+    @Test
+    public void shouldAllowNullDefaults() {
+        //Given
+        Value<String> value = new Value<>("name", null);
+
+        //And
+        lookup.add(value);
+
+        //Then
+        Object name = lookup.get("name", null);
+
+        assertThat(name).isNull();
+    }
+
 }

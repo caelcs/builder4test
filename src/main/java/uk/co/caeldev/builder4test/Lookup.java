@@ -21,10 +21,6 @@ public class Lookup {
     public <K> K get(String fieldName, K defaultValue) {
         Optional<Value> optionalValue = Optional.ofNullable(fields.get(fieldName));
 
-        if (isNull(defaultValue)) {
-            throw  new IllegalArgumentException("Default value cannot be null");
-        }
-
         if (!optionalValue.isPresent()) {
             return defaultValue;
         }
