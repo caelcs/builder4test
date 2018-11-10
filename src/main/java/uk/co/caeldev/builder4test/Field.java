@@ -2,7 +2,7 @@ package uk.co.caeldev.builder4test;
 
 public class Field<T> {
 
-    T defaultValue;
+    private T defaultValue;
 
     public Field() {
     }

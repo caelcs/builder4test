@@ -8,13 +8,13 @@ import static java.util.Objects.isNull;
 
 public class LookUp {
 
-    Map<Field, Optional> values;
+    private Map<Field, Optional> values;
 
-    LookUp() {
+    protected LookUp() {
         this.values = new HashMap<>();
     }
 
-    <V> void put(Field<V> field, V value) {
+    protected <V> void put(Field<V> field, V value) {
         values.put(field, Optional.ofNullable(value));
     }
 

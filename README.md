@@ -5,10 +5,10 @@
 
 Library to build your POJO entities in a very easy and builder intuitive way.
 
-# Motivation
+## Motivation
 Most of the time when I am writing my tests I have the need to write clean and readable tests. One way that I found is by having Test Builder but normally it takes time and are difficult to mantain in time. So after looking around I came up with this library to help you to create your pojo in a different and easy way.
 
-# How to use it.
+## How to use it
 
 There are several ways to use it but the most flexible for me is creating a Class Builder that contains all the logic to create the objects.
 The same example you can find in the lib tests.
@@ -33,18 +33,18 @@ public class PojoBuilder {
 There many things going on there. but I will try to explain it in the best way that I can.
 There are two concepts to keep in mind, Field, Creator and LookUp.
 
-## Creator
+### Creator
 The Creator implements method build that should contains how the object is going to be build.
 
-## Field
+### Field
 The Field represent the value that you want to change by using the DSL in the construction of your objects.
 
-## LookUp 
+### LookUp 
 In charge of binding the Field instance and getting the corresponding value in the creator class.
 
 In the example above the Creator is building a pojo using the constructor method and it is using the lookUp instance to get the corresponding value.
 
-## Ways of using the the three things.
+## Ways of using the the three things
 
 ```java
 public static Field<String> name = new Field<>();
@@ -76,10 +76,10 @@ Pojo pojo = Builder.build()
                 .get();
 ```
 
-# Credits
+## Credits
 The library is highly inspired by 
 
-https://github.com/npryce/make-it-easy And AssertJ
+[https://github.com/npryce/make-it-easy] And AssertJ
 
 Make It Ease lib provides a Hamcrest style DSL but I am more fun of using a builder kind of DSL like AssertJ that offers straight away the option that I can use.
 I want to say thank you to all the collaborator of MakeItEasy project.

@@ -5,12 +5,12 @@ public class EntityBuilder<K> {
     private final Creator<K> creator;
     private final LookUp lookUp;
 
-    EntityBuilder(Creator<K> creator) {
+    private EntityBuilder(Creator<K> creator) {
         this.creator = creator;
         this.lookUp = new LookUp();
     }
 
-    static <T> EntityBuilder<T> entityBuilder(Creator<T> Creator) {
+    protected static <T> EntityBuilder<T> entityBuilder(Creator<T> Creator) {
         return new EntityBuilder<>(Creator);
     }
 

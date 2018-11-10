@@ -1,8 +1,8 @@
 package uk.co.caeldev.builder4test.impl;
 
 public class Pojo {
-    String name;
-    String value;
+    private String name;
+    private String value;
 
     public Pojo(String name, String value) {
         this.name = name;

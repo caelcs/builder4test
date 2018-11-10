@@ -3,8 +3,6 @@ package uk.co.caeldev.builder4test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LookUpTest {
@@ -12,7 +10,7 @@ class LookUpTest {
     private LookUp lookUp;
 
     @BeforeEach
-    public void setup() {
+    public void setUp() {
         this.lookUp = new LookUp();
     }
 
@@ -25,8 +23,8 @@ class LookUpTest {
         lookUp.put(field, "defaultValue");
 
         //Then
-        Optional optional = lookUp.values.get(field);
-        assertThat(optional).isPresent();
+        String value = lookUp.get(field);
+        assertThat(value).isEqualTo("defaultValue");
     }
 
     @Test
