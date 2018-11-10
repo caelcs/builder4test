@@ -2,7 +2,7 @@ package uk.co.caeldev.builder4test;
 
 import org.junit.jupiter.api.Test;
 import uk.co.caeldev.builder4test.impl.Pojo;
-import uk.co.caeldev.builder4test.impl.PojoCreator;
+import uk.co.caeldev.builder4test.impl.PojoBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,15 +10,15 @@ class EntityBuilderTest {
 
     @Test
     public void shouldBuild() {
-        EntityBuilder entityBuilder = EntityBuilder.entityBuilder(new PojoCreator());
-        EntityBuilder entityBuilder2 = EntityBuilder.entityBuilder(new PojoCreator());
+        EntityBuilder entityBuilder = EntityBuilder.entityBuilder(PojoBuilder.creator);
+        EntityBuilder entityBuilder2 = EntityBuilder.entityBuilder(PojoBuilder.creator);
 
         assertThat(entityBuilder).isNotEqualTo(entityBuilder2);
     }
 
     @Test
     public void shouldGetEntityUsingDefaultValues() {
-        Pojo pojo = EntityBuilder.entityBuilder(new PojoCreator()).get();
+        Pojo pojo = EntityBuilder.entityBuilder(PojoBuilder.creator).get();
 
         assertThat(pojo.getName()).isEqualTo("defaultName");
         assertThat(pojo.getValue()).isEqualTo("defaultValue");
@@ -26,9 +26,12 @@ class EntityBuilderTest {
 
     @Test
     public void shouldBindValueAndNotUseDefault() {
-        Pojo pojo = EntityBuilder.entityBuilder(new PojoCreator()).with("name", "newname").get();
+        Pojo pojo = EntityBuilder.entityBuilder(PojoBuilder.creator)
+                .override(PojoBuilder.name, "newNAme")
+                .override(PojoBuilder.value, "newValue")
+                .get();
 
-        assertThat(pojo.getName()).isEqualTo("newname");
-        assertThat(pojo.getValue()).isEqualTo("defaultValue");
+        assertThat(pojo.getName()).isEqualTo("newNAme");
+        assertThat(pojo.getValue()).isEqualTo("newValue");
     }
 }
