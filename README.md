@@ -3,10 +3,10 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/97f9a4cec6274108af592a20ae31f82b)](https://www.codacy.com/app/adolfoecs/builder4test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=caelwinner/builder4test&amp;utm_campaign=Badge_Grade)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test)
 
-Library to build your POJO entities in a very easy and builder intuitive way.
+Library to build your POJO entities using a very intuitive DSL.
 
 ## Motivation
-Most of the time when I am writing my tests I have the need to write clean and readable tests. One way that I found is by having Test Builder but normally it takes time and are difficult to mantain in time. So after looking around I came up with this library to help you to create your pojo in a different and easy way.
+Most of the time when I am writing my tests I have the need to write clean and readable tests. One way to achieve is by having Test Builder, but normally it takes time and are difficult to mantain in time. So after looking around I came up with this library to help you to create your pojo in a different and easy way.
 
 ## How to use it
 
@@ -30,18 +30,17 @@ public class PojoBuilder {
 
 }
 ```
-There many things going on there. but I will try to explain it in the best way that I can.
-There are two concepts to keep in mind, Field, Creator and LookUp.
+There many things going on there but I will try to explain it in the best way that I can.
+There are s few concepts to keep in mind; Field, Creator and LookUp.
 
 ### Creator
-The Creator implements method build that should contains how the object is going to be build.
+The Creator implements a method build that should contains how the object is going to be build.
 
 ### Field
 The Field represent the value that you want to change by using the DSL in the construction of your objects.
 
 ### LookUp 
 In charge of binding the Field instance and getting the corresponding value in the creator class.
-
 In the example above the Creator is building a pojo using the constructor method and it is using the lookUp instance to get the corresponding value.
 
 ## Build an entity
@@ -75,7 +74,7 @@ Pojo pojo = Builder.build()
 
 ## Build a list of entities
 
-As easy as creating an entity, just use list method from the DSL and add as many elements to the collection as you want. For each element you can define a the fields that you want to override.
+As easy as is creating an entity with Builder4Test, just use list method from the DSL and add as many elements to the collection as you want. For each element you can override all the fields.
 In the example below we are creating a list of two elements overriding the fiend name.
  
 ```java
@@ -86,14 +85,14 @@ List<Pojo> testSiumple = Builder.build()
             .end()
         .element()
             .field(name, "testSiumple2")
-        .end()
+            .end()
     .get();
 ```
 
 ## Credits
 The library is highly inspired by 
 
-[Make it Easy](https://github.com/npryce/make-it-easy) And AssertJ
+[Make it Easy](https://github.com/npryce/make-it-easy) And [AssertJ](https://github.com/joel-costigliola/assertj-core)
 
 Make It Ease lib provides a Hamcrest style DSL but I am more fun of using a builder kind of DSL like AssertJ that offers straight away the option that I can use.
 I want to say thank you to all the collaborator of MakeItEasy project.
