@@ -13,6 +13,8 @@ Most of the time when I am writing my tests I have the need to write clean and r
 There are several ways to use it but the most flexible for me is creating a Class Builder that contains all the logic to create the objects.
 The same example you can find in the lib tests.
 
+you can inspect this [demo project](https://github.com/caelwinner/build4test-demo) to see how to use this library.
+
 ```java
 public class PojoBuilder {
 
