@@ -1,5 +1,7 @@
 package integration;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import uk.co.caeldev.builder4test.Builder;
 import uk.co.caeldev.builder4test.impl.Pojo;
@@ -13,6 +15,7 @@ import static uk.org.fyodor.generators.RDG.string;
 public class BuilderIntegrationTest {
 
     @Test
+    @DisplayName("should build a pojo successfully using defaults values")
     public void shouldBuildPojo() {
         //When
         Pojo pojo = Builder.build().entity(creator).get();
@@ -23,6 +26,7 @@ public class BuilderIntegrationTest {
     }
 
     @Test
+    @DisplayName("should build a pojo successfully when override default values")
     public void shouldBuildPojoOverridingValues() {
         //When
         Pojo pojo = Builder.build()
@@ -37,6 +41,7 @@ public class BuilderIntegrationTest {
     }
 
     @Test
+    @DisplayName("should build different pojo successfully when overrides the default values for both objects")
     public void shouldBuilTwoDifferentInstancesWithDifferentValues() {
         //When
         Pojo pojo1 = Builder.build()
@@ -61,6 +66,7 @@ public class BuilderIntegrationTest {
     }
 
     @Test
+    @DisplayName("should build pojo using defaults values sets by field constructor")
     public void shouldUseDefaultValuesFromFieldInstantiation() {
         //When
         Pojo pojo1 = Builder.build()
@@ -73,6 +79,7 @@ public class BuilderIntegrationTest {
     }
 
     @Test
+    @DisplayName("should build a pojo successfully overriding defaults values sets by constructor")
     public void shouldOverrideDefaultValuesFromFieldInstantiation() {
         //When
         Pojo pojo1 = Builder.build()
@@ -87,6 +94,7 @@ public class BuilderIntegrationTest {
     }
 
     @Test
+    @DisplayName("should build a pojo successfully setting nulls as values")
     public void shouldOverrideWithNulls() {
         //When
         Pojo pojo = Builder.build()
@@ -100,53 +108,75 @@ public class BuilderIntegrationTest {
         assertThat(pojo.getValue()).isNull();
     }
 
-    @Test
-    public void shouldBuildAListOfTwoEntities() {
+    @Nested
+    class ListGenerationTest {
 
-        //When
-        List<Pojo> testSiumple = Builder.build()
-                .list(creator)
-                    .element()
-                        .override(name, "testSiumple")
-                        .end()
-                    .element()
-                        .override(name, "testSiumple2")
-                    .end()
-                .get();
+        @Test
+        @DisplayName("should build a list of two elements overriding defaults values")
+        public void shouldBuildAListOfTwoEntities() {
 
-        //Then
-        assertThat(testSiumple).isNotEmpty();
-        assertThat(testSiumple).hasSize(2);
+            //When
+            List<Pojo> testSiumple = Builder.build()
+                    .list(creator)
+                    .elements()
+                        .element()
+                            .override(name, "testSiumple")
+                            .end()
+                        .element()
+                            .override(name, "testSiumple2")
+                            .end()
+                    .get();
 
-        //And
-        Pojo pojo = testSiumple.get(0);
-        assertThat(pojo.getName()).isEqualTo("testSiumple");
-        assertThat(pojo.getValue()).isEqualTo("defaultValue");
+            //Then
+            assertThat(testSiumple).isNotEmpty();
+            assertThat(testSiumple).hasSize(2);
 
-        //And
-        Pojo pojo1 = testSiumple.get(1);
-        assertThat(pojo1.getName()).isEqualTo("testSiumple2");
-        assertThat(pojo1.getValue()).isEqualTo("defaultValue");
-    }
+            //And
+            Pojo pojo = testSiumple.get(0);
+            assertThat(pojo.getName()).isEqualTo("testSiumple");
+            assertThat(pojo.getValue()).isEqualTo("defaultValue");
 
-    @Test
-    public void shouldBuildAListOfTwoUsingGenerators() {
-        //Given
-        int size = 2;
+            //And
+            Pojo pojo1 = testSiumple.get(1);
+            assertThat(pojo1.getName()).isEqualTo("testSiumple2");
+            assertThat(pojo1.getValue()).isEqualTo("defaultValue");
+        }
 
-        //When
-        List<Pojo> testSimple = Builder.build()
-                .list(creator)
-                .size(size)
-                .override(name, string())
-                .override(value, string())
-                .get();
+        @Test
+        @DisplayName("should build a list of two elements overriding defaults values with random generators")
+        public void shouldBuildAListOfTwoUsingGenerators() {
+            //Given
+            int size = 2;
 
-        //Then
-        assertThat(testSimple).isNotEmpty();
-        assertThat(testSimple).hasSize(size);
+            //When
+            List<Pojo> testSimple = Builder.build()
+                    .list(creator)
+                    .size(size)
+                    .override(name, string())
+                    .override(value, string())
+                    .get();
 
-        assertThat(testSimple.get(0).getName()).isNotEqualTo(testSimple.get(1).getName());
-        assertThat(testSimple.get(0).getValue()).isNotEqualTo(testSimple.get(1).getValue());
+            //Then
+            assertThat(testSimple).isNotEmpty();
+            assertThat(testSimple).hasSize(size);
+
+            assertThat(testSimple.get(0).getName()).isNotEqualTo(testSimple.get(1).getName());
+            assertThat(testSimple.get(0).getValue()).isNotEqualTo(testSimple.get(1).getValue());
+        }
+
+        @Test
+        @DisplayName("should build a list of one elements using defaults values when there is no size or elements definitions")
+        public void shouldBuildAListSizeOneWithNoSizeAndNoElementsDefinitions() {
+            //When
+            List<Pojo> testSimple = Builder.build()
+                    .list(creator).elements().get();
+
+            //Then
+            assertThat(testSimple).isNotEmpty();
+            assertThat(testSimple).hasSize(1);
+
+            assertThat(testSimple.get(0).getName()).isEqualTo("defaultName");
+            assertThat(testSimple.get(0).getValue()).isEqualTo("defaultValue");
+        }
     }
 }
