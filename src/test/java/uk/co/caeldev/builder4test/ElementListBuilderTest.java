@@ -1,5 +1,6 @@
 package uk.co.caeldev.builder4test;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.co.caeldev.builder4test.impl.Pojo;
 import uk.co.caeldev.builder4test.impl.PojoBuilder;
@@ -11,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ElementListBuilderTest {
 
     @Test
+    @DisplayName("Should build different instances of ElementListBuilder")
     public void shouldBuilderDifferentBuilders() {
         //When
         ElementListBuilder<Pojo> pojoListBuilder = ElementListBuilder.elementListBuilder(PojoBuilder.creator);
@@ -21,7 +23,8 @@ class ElementListBuilderTest {
     }
 
     @Test
-    public void shouldBuildEmptyList() {
+    @DisplayName("Should build by default a list of one element where there is no size and elements definitions")
+    public void shouldBuildAListOfOneElement() {
         //When
         List<Pojo> pojos = ElementListBuilder.elementListBuilder(PojoBuilder.creator).get();
 
@@ -30,6 +33,7 @@ class ElementListBuilderTest {
     }
 
     @Test
+    @DisplayName("Should build a list of one element when there is one element definition")
     public void shouldBuildListWithOneElement() {
         //When
         List<Pojo> pojos = ElementListBuilder.elementListBuilder(PojoBuilder.creator)
@@ -48,6 +52,7 @@ class ElementListBuilderTest {
     }
 
     @Test
+    @DisplayName("Should build a list of two elements when there is two element definitions")
     public void shouldBuildListWithTwoElements() {
         //When
         List<Pojo> pojos = ElementListBuilder.elementListBuilder(PojoBuilder.creator)
