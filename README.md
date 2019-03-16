@@ -74,6 +74,53 @@ Pojo pojo = Builder.build()
                 .get();
 ```
 
+You can nullify a field by just using nullify Method from DSL.
+
+```java
+Pojo pojo = Builder.build()
+                .entity(PojoBuilder.creator)
+                .override(PojoBuilder.name, "nameoverrideed")
+                .nullify(PojoBuilder.value)
+                .get();
+```
+
+## Reuse amd composition of Creators
+
+if you have already creators and you want to reuse them on other creator, you can achieve by:
+
+- Setting your existing creator as a default value when you define your new creator, note that you can even override the values of the creator that you are using as default. 
+
+```java
+    public static Field<String> name = new Field<>();
+    public static Creator<String> nameCreator = lookUp -> lookUp.get(name, "test1");
+    
+    public static Field<String> secondName = new Field<>();
+    public static Creator<String> creator = lookUp -> lookUp.get(secondName, secondCreator);
+    
+    Pojo pojo = Builder.build()
+                    .entity(creator)
+                    .override(name, "test2")
+                    .get();
+```
+
+- The other way is by overriding a field using a creator as value:
+
+```java
+
+public static Field<String> secondName = new Field<>();
+public static Creator<String> secondCreator = lookUp -> lookUp.get(secondName, "test1");
+
+Pojo pojo = Builder.build()
+                .entity(PojoBuilder.creator)
+                .override(PojoBuilder.name, "nameoverrideed")
+                .override(PojoBuilder.secondName, "secondName")
+                .override(PojoBuilder.value, secondCreator)
+                .get();
+```
+
+- You can also from there override a field of secondCreator but you have to override those before using the secondCreator.
+
+
 ## Build a list of entities
 
 As easy as is creating an entity with Builder4Test, just use list method from the DSL and add as many elements to the collection as you want. For each element you can override all the fields.
@@ -102,7 +149,9 @@ List<Pojo> testSimple = Builder.build()
                 .get();
 ```
 This code will generate a List of five elements and each element will contain a random value and field.
-Using defaults generator provided by Fyodor is easy to generate your random values. 
+Using defaults generator provided by Fyodor is easy to generate your random values.
+
+__Note:__ that you can use creators as default values in your collections. 
 
 ## Credits
 The library is highly inspired by 
