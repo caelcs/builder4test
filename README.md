@@ -84,11 +84,11 @@ Pojo pojo = Builder.build()
                 .get();
 ```
 
-## Reuse amd composition of Creators
+## Reuse and composition of Creators
 
-if you have already creators and you want to reuse them on other creator, you can achieve by:
+If you already have creators and you want to reuse them on other creator, you can achieve it by:
 
-- Setting your existing creator as a default value when you define your new creator, note that you can even override the values of the creator that you are using as default. 
+- Setting your existing creator as a default value when you define your new creator. Note that you can even override the values of the creator that you are using as default. 
 
 ```java
     public static Field<String> name = new Field<>();
