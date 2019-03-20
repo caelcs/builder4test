@@ -1,6 +1,6 @@
 # Builder4test
 [![Build Status](https://travis-ci.org/caelwinner/builder4test.svg?branch=master)](https://travis-ci.org/caelwinner/builder4test)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/97f9a4cec6274108af592a20ae31f82b)](https://www.codacy.com/app/adolfoecs/builder4test?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=caelwinner/builder4test&amp;utm_campaign=Badge_Grade)
+[![Coverage Status](https://coveralls.io/repos/github/caelwinner/builder4test/badge.svg?branch=master)](https://coveralls.io/github/caelwinner/builder4test?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test)
 
 Library to build your POJO entities using a very intuitive DSL.
