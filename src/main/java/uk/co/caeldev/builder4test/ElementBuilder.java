@@ -27,7 +27,7 @@ public class ElementBuilder<K> implements OverrideField<ElementBuilder<K>> {
     }
 
     @Override
-    public <U> ElementBuilder<K> override(Field<U> field, Supplier<U> value) {
+    public <U> ElementBuilder<K> overrideSupplier(Field<U> field, Supplier<U> value) {
         this.fields.put(field, new SupplierResolver(value));
         return this;
     }
@@ -39,8 +39,8 @@ public class ElementBuilder<K> implements OverrideField<ElementBuilder<K>> {
     }
 
     @Override
-    public <U> ElementBuilder<K> override(Field<U> field, Creator<U> creator) {
-        return override(field, () -> creator.build(new DefaultLookUp(fields)));
+    public <U> ElementBuilder<K> overrideCreator(Field<U> field, Creator<U> creator) {
+        return overrideSupplier(field, () -> creator.build(new DefaultLookUp(fields)));
     }
 
     public <U> ElementBuilder<K> nullify(Field<U> field) {

@@ -40,7 +40,7 @@ public class EntityBuilder<K> implements OverrideField<EntityBuilder<K>> {
     }
 
     @Override
-    public <V> EntityBuilder<K> override(Field<V> field, Supplier<V> value) {
+    public <V> EntityBuilder<K> overrideSupplier(Field<V> field, Supplier<V> value) {
         lookUp.put(field, new SupplierResolver<>(value));
         return this;
     }
@@ -52,8 +52,8 @@ public class EntityBuilder<K> implements OverrideField<EntityBuilder<K>> {
     }
 
     @Override
-    public <V> EntityBuilder<K> override(Field<V> field, Creator<V> creator) {
-        return override(field, () -> creator.build(lookUp));
+    public <V> EntityBuilder<K> overrideCreator(Field<V> field, Creator<V> creator) {
+        return overrideSupplier(field, () -> creator.build(lookUp));
     }
 
     public <V> EntityBuilder<K> nullify(Field<V> field) {

@@ -29,7 +29,7 @@ public class FixedSizeListBuilder<K> implements OverrideField<FixedSizeListBuild
     }
 
     @Override
-    public <U> FixedSizeListBuilder<K> override(Field<U> field, Supplier<U> supplier) {
+    public <U> FixedSizeListBuilder<K> overrideSupplier(Field<U> field, Supplier<U> supplier) {
         values.put(field, new SupplierResolver(supplier));
         return this;
     }
@@ -41,8 +41,8 @@ public class FixedSizeListBuilder<K> implements OverrideField<FixedSizeListBuild
     }
 
     @Override
-    public <U> FixedSizeListBuilder<K> override(Field<U> field, Creator<U> creator) {
-        override(field, () -> creator.build(new DefaultLookUp(values)));
+    public <U> FixedSizeListBuilder<K> overrideCreator(Field<U> field, Creator<U> creator) {
+        overrideSupplier(field, () -> creator.build(new DefaultLookUp(values)));
         return this;
     }
 

@@ -55,7 +55,7 @@ class ElementBuilderTest {
 
         //When
         ElementBuilder<Pojo> elementBuilder = ElementBuilder.elementBuilder(elementListBuilder(PojoBuilder.creator));
-        elementBuilder.override(field, () -> "override");
+        elementBuilder.overrideSupplier(field, () -> "override");
 
         //Then
         assertThat(elementBuilder.getFields()).hasSize(1);
@@ -72,7 +72,7 @@ class ElementBuilderTest {
 
         //When
         ElementBuilder<Pojo> elementBuilder = ElementBuilder.elementBuilder(elementListBuilder);
-        ElementListBuilder<Pojo> elementListBuilder1 = elementBuilder.override(field, () -> "override").end();
+        ElementListBuilder<Pojo> elementListBuilder1 = elementBuilder.overrideSupplier(field, () -> "override").end();
 
         //Then
         assertThat(elementBuilder.getFields()).hasSize(1);
@@ -108,7 +108,7 @@ class ElementBuilderTest {
 
         //When
         ElementBuilder<Pojo> elementBuilder = ElementBuilder.elementBuilder(elementListBuilder);
-        ElementListBuilder<Pojo> elementListBuilder1 = elementBuilder.override(field, PojoBuilder.valueCreator).end();
+        ElementListBuilder<Pojo> elementListBuilder1 = elementBuilder.overrideCreator(field, PojoBuilder.valueCreator).end();
 
         //Then
         assertThat(elementBuilder.getFields()).hasSize(1);

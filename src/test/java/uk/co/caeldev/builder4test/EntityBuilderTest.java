@@ -43,8 +43,8 @@ class EntityBuilderTest {
     @DisplayName("Should be able to override the default values using suppliers")
     public void shouldBindValueAndNotUseDefaultUsingSuppliers() {
         Pojo pojo = EntityBuilder.entityBuilder(PojoBuilder.creator)
-                .override(PojoBuilder.name, () -> "newNAme")
-                .override(PojoBuilder.value, () -> "newValue")
+                .overrideSupplier(PojoBuilder.name, () -> "newNAme")
+                .overrideSupplier(PojoBuilder.value, () -> "newValue")
                 .get();
 
         assertThat(pojo.getName()).isEqualTo("newNAme");
@@ -80,7 +80,7 @@ class EntityBuilderTest {
     public void shouldBeAbleToSetACreatorAsValue() {
         Pojo pojo = EntityBuilder.entityBuilder(PojoBuilder.creator)
                 .nullify(PojoBuilder.name)
-                .override(PojoBuilder.value, PojoBuilder.valueCreator)
+                .overrideCreator(PojoBuilder.value, PojoBuilder.valueCreator)
                 .get();
 
         assertThat(pojo.getName()).isNull();
