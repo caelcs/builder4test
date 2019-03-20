@@ -5,6 +5,8 @@
 
 Library to build your POJO entities using a very intuitive DSL.
 
+**NOTE**: from version 0.2.x the DSL has changed a little bit to provide more support and new features. you will have to update your test in order to use the new version but hopefully the DSL should change.
+
 ## Motivation
 Most of the time when I am writing my tests I have the need to write clean and readable tests. One way to achieve is by having Test Builder, but normally it takes time and are difficult to mantain in time. So after looking around I came up with this library to help you to create your pojo in a different and easy way.
 
@@ -69,8 +71,8 @@ and below is the code to generate your pojo.
 ```java
 Pojo pojo = Builder.build()
                 .entity(PojoBuilder.creator)
-                .override(PojoBuilder.name, "nameoverrideed")
-                .override(PojoBuilder.value, "valueoverrided")
+                .overrideValue(PojoBuilder.name, "nameoverrideed")
+                .overrideValue(PojoBuilder.value, "valueoverrided")
                 .get();
 ```
 
@@ -79,7 +81,7 @@ You can nullify a field by just using nullify Method from DSL.
 ```java
 Pojo pojo = Builder.build()
                 .entity(PojoBuilder.creator)
-                .override(PojoBuilder.name, "nameoverrideed")
+                .overrideValue(PojoBuilder.name, "nameoverrideed")
                 .nullify(PojoBuilder.value)
                 .get();
 ```
@@ -99,11 +101,11 @@ If you already have creators and you want to reuse them on other creator, you ca
     
     Pojo pojo = Builder.build()
                     .entity(creator)
-                    .override(name, "test2")
+                    .overrideValue(name, "test2")
                     .get();
 ```
 
-- The other way is by overriding a field using a creator as value:
+- The other way is by overriding a field using a creator or Supplier as value:
 
 ```java
 
@@ -112,9 +114,9 @@ public static Creator<String> secondCreator = lookUp -> lookUp.get(secondName, "
 
 Pojo pojo = Builder.build()
                 .entity(PojoBuilder.creator)
-                .override(PojoBuilder.name, "nameoverrideed")
-                .override(PojoBuilder.secondName, "secondName")
-                .override(PojoBuilder.value, secondCreator)
+                .overrideValue(PojoBuilder.name, "nameoverrideed")
+                .overrideSupplier(PojoBuilder.secondName, () -> "secondName")
+                .overrideCreator(PojoBuilder.value, secondCreator)
                 .get();
 ```
 
@@ -130,10 +132,10 @@ In the example below we are creating a list of two elements overriding the fiend
 List<Pojo> testSiumple = Builder.build()
     .list(creator).elements()
         .element()
-            .override(name, "testSiumple")
+            .overrideValue(name, "testSiumple")
             .end()
         .element()
-            .override(name, "testSiumple2")
+            .overrideValue(name, "testSiumple2")
             .end()
     .get();
 ```
@@ -144,8 +146,8 @@ Also if you want to generate a certain amount of elements using the defaults val
 List<Pojo> testSimple = Builder.build()
                 .list(creator)
                 .size(5)
-                .override(name, RDG.string())
-                .override(value, RDG.string())
+                .overrideSupplier(name, () -> RDG.string())
+                .overrideSupplier(value, () -> RDG.string())
                 .get();
 ```
 This code will generate a List of five elements and each element will contain a random value and field.
