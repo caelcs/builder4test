@@ -125,12 +125,12 @@ uploadArchives {
                 packaging "jar"
 
                 description "Library to build your own test builders in a easy way"
-                url "https://github.com/caelwinner/builder4test"
+                url "https://github.com/caelcs/builder4test"
 
                 scm {
-                    url "https://github.com/caelwinner/builder4test.git"
-                    connection "https://github.com/caelwinner/builder4test.git"
-                    developerConnection "https://github.com/caelwinner/builder4test.git"
+                    url "https://github.com/caelcs/builder4test.git"
+                    connection "https://github.com/caelcs/builder4test.git"
+                    developerConnection "https://github.com/caelcs/builder4test.git"
                 }
 
                 licenses {
@@ -143,7 +143,7 @@ uploadArchives {
 
                 developers {
                     developer {
-                        id "caelwinner"
+                        id "caelcs"
                         name "Adolfo E Custidiano S"
                         email "adolfoecs@gmail.com"
                     }
