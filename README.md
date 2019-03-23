@@ -1,6 +1,6 @@
 # Builder4test
 [![Build Status](https://travis-ci.org/caelcs/builder4test.svg?branch=master)](https://travis-ci.org/caelcs/builder4test)
-[![Coverage Status](https://coveralls.io/repos/github/caelcs/builder4test/badge.svg?branch=master)](https://coveralls.io/github/caelcs/builder4test?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/caelcs/builder4test/badge.svg)](https://coveralls.io/github/caelcs/builder4test)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test)
 
 Library to build your POJO entities using a very intuitive DSL.
