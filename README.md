@@ -1,6 +1,6 @@
 # Builder4test
-[![Build Status](https://travis-ci.org/caelwinner/builder4test.svg?branch=master)](https://travis-ci.org/caelwinner/builder4test)
-[![Coverage Status](https://coveralls.io/repos/github/caelwinner/builder4test/badge.svg?branch=master)](https://coveralls.io/github/caelwinner/builder4test?branch=master)
+[![Build Status](https://travis-ci.org/caelcs/builder4test.svg?branch=master)](https://travis-ci.org/caelcs/builder4test)
+[![Coverage Status](https://coveralls.io/repos/github/caelcs/builder4test/badge.svg?branch=master)](https://coveralls.io/github/caelcs/builder4test?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/uk.co.caeldev/builder4test)
 
 Library to build your POJO entities using a very intuitive DSL.
@@ -15,7 +15,7 @@ Most of the time when I am writing my tests I have the need to write clean and r
 There are several ways to use it but the most flexible for me is creating a Class Builder that contains all the logic to create the objects.
 The same example you can find in the lib tests.
 
-you can inspect this [demo project](https://github.com/caelwinner/build4test-demo) to see how to use this library.
+you can inspect this [demo project](https://github.com/caelcs/build4test-demo) to see how to use this library.
 
 ```java
 public class PojoBuilder {
